@@ -1,13 +1,14 @@
+
 local ServerStorage = game:GetService("ServerStorage")
 
 local PickaxeService = {}
 
-local PICKAXE_FOLDER_NAME = "Pickaxes"
-local DEFAULT_PICKAXE_NAME = "WoodPickaxe"
+local PickaxeFolderName = "Pickaxes"
+local DefaultPickaxeName = "WoodPickaxe"
 
 local function getPickaxeFolder()
 	local toolsFolder = ServerStorage:FindFirstChild("Tools")
-	return toolsFolder and toolsFolder:FindFirstChild(PICKAXE_FOLDER_NAME)
+	return toolsFolder and toolsFolder:FindFirstChild(PickaxeFolderName)
 end
 
 local function getTemplate(toolName)
@@ -34,11 +35,11 @@ local function removeExistingPickaxes(player)
 end
 
 function PickaxeService.GetTemplate(toolName)
-	return getTemplate(toolName or DEFAULT_PICKAXE_NAME)
+	return getTemplate(toolName or DefaultPickaxeName)
 end
 
 function PickaxeService.Grant(player, toolName)
-	local template = getTemplate(toolName or DEFAULT_PICKAXE_NAME)
+	local template = getTemplate(toolName or DefaultPickaxeName)
 	local backpack = player:FindFirstChildOfClass("Backpack")
 	if not template or not backpack then
 		return nil
@@ -51,7 +52,7 @@ function PickaxeService.Grant(player, toolName)
 end
 
 function PickaxeService.GrantDefault(player)
-	return PickaxeService.Grant(player, DEFAULT_PICKAXE_NAME)
+	return PickaxeService.Grant(player, DefaultPickaxeName)
 end
 
 return PickaxeService
